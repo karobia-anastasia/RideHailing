@@ -1,7 +1,7 @@
 import React from 'react';
 import InputField from '../fields/InputField';
 import AuthButton from '../buttons/AuthButton';
-import { Link } from 'react-router-dom';  // Make sure to import Link here
+import { Link } from 'react-router-dom';  
 
 const AuthForm = ({
   username,
@@ -40,7 +40,6 @@ const AuthForm = ({
 
         {formType === 'signup' && (
           <>
-            {/* Confirm Password Field for Sign Up only */}
             <InputField
               id="confirm-password"
               label="Confirm Password"
@@ -52,7 +51,6 @@ const AuthForm = ({
           </>
         )}
 
-        {/* Submit Button */}
         <AuthButton
           type="submit"
           text={formType === 'login' ? 'Login' : 'Sign Up'}
@@ -60,7 +58,6 @@ const AuthForm = ({
         />
       </form>
 
-      {/* Links for toggling between Login and Sign Up */}
       {formType === 'login' ? (
         <div className="text-center mt-4">
           <Link to="/signup" className="text-blue-600">

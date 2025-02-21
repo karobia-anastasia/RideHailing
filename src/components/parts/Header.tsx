@@ -23,11 +23,9 @@ const Header = ({ toggleSidebar }) => {
             ☰
           </button>
 
-          {/* Header Title */}
           <h1 className="text-2xl font-bold">Ride-Hailing Dashboard</h1>
         </div>
 
-        {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex space-x-4">
           {navItems.map((item) => (
             <Link
@@ -40,7 +38,6 @@ const Header = ({ toggleSidebar }) => {
           ))}
         </nav>
 
-        {/* Theme Toggle Button */}
         <button
           onClick={toggleTheme}
           className="text-white"

@@ -6,7 +6,7 @@ import ConfirmationModal from '../../components/modals/ConfirmationModal';
 const mapImage = "./assets/maps.jpeg";
 
 const AvailableRides = () => {
-  const { theme } = useTheme(); // Get current theme from context
+  const { theme } = useTheme(); 
   const [availableRides, setAvailableRides] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedRide, setSelectedRide] = useState<any>(null);
