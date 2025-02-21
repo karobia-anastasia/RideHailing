@@ -1,78 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import RideCard from '../../components/cards/RideCard';
-import ConfirmationModal from '../../components/modals/ConfirmationModal';
+import React from 'react';
+import { useTheme } from '../../context/ThemeContext'; 
 
-const AvailableRides: React.FC = () => {
-  const [availableRides, setAvailableRides] = useState<any[]>([]); 
-  const [isLoading, setIsLoading] = useState(true); 
-  const [selectedRide, setSelectedRide] = useState<any>(null); 
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:5000/rides') 
-      .then((response) => {
-        console.log('Fetched data:', response.data);
-        setAvailableRides(response.data); 
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching available rides:', error);
-        setIsLoading(false);
-      });
-  }, []);
-
-  const handleBookRide = (ride: any) => {
-    setSelectedRide(ride); 
-  };
-
-  const confirmBooking = () => {
-    if (selectedRide) {
-      console.log('Booking confirmed for ride:', selectedRide);
-      setSelectedRide(null);
-    }
-  };
-
-  const cancelBooking = () => {
-    setSelectedRide(null); 
-  };
-
-  if (isLoading) {
-    return <div className="text-center">Loading available rides...</div>;
-  }
+const RideHistory = () => {
+  const { theme } = useTheme(); 
+  const bookedRides = JSON.parse(localStorage.getItem('bookedRides') || '[]');
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Available Rides</h2>
-      {availableRides.length === 0 ? (
-        <p>No rides available at the moment.</p>
+    <div className={`p-4 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}>
+      <h2 className="text-2xl font-bold mb-4">Ride History</h2>
+      {bookedRides.length === 0 ? (
+        <p>No rides booked yet.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {availableRides.map((ride: any) => (
-            <div key={ride.id} className="bg-white shadow-md rounded-md p-4 hover:shadow-lg transition duration-200">
+        <div className="space-y-4">
+          {bookedRides.map((ride: any, index: number) => (
+            <div
+              key={index}
+              className={`shadow-md rounded-md p-4 ${theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-white text-gray-800'}`}
+              >
               <h3 className="font-bold text-xl mb-2">{ride.rideName}</h3>
               <p className="text-gray-600 mb-2">Driver: {ride.driver}</p>
               <p className="text-gray-600 mb-2">Available Seats: {ride.availableSeats}</p>
               <p className="text-gray-700 font-semibold">Price: {ride.price}</p>
-              <button
-                onClick={() => handleBookRide(ride)}
-                className="mt-4 px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition duration-300"
-              >
-                Book Ride
-              </button>
             </div>
           ))}
         </div>
-      )}
-      {selectedRide && (
-        <ConfirmationModal
-          ride={selectedRide}
-          onConfirm={confirmBooking}
-          onCancel={cancelBooking}
-        />
       )}
     </div>
   );
 };
 
-export default AvailableRides;
+export default RideHistory;

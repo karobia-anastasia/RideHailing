@@ -1,11 +1,11 @@
-import React from "react"
+import React from "react";
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
-    <footer className="bg-emerald-600 text-white py-4 text-center mt-4 dark:bg-emerald-800">
+    <footer className="bg-emerald-100 text-gray py-4 text-center dark:bg-emerald-400 w-[100%] mx-auto fixed bottom-0  right-0">
       <p>© 2025 Ride-Hailing Dashboard. All rights reserved.</p>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

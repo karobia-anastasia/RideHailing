@@ -1,41 +1,35 @@
-"use client";
-
 import React, { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
-import { Outlet } from "react-router-dom";  // Import Outlet to render nested routes
+import { Outlet } from "react-router-dom"; 
 import Header from "../components/parts/Header";
 import Sidebar from "../components/parts/Sidebar";
 import Footer from "../components/parts/Footer";
 
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { theme } = useTheme(); // Get the current theme
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar open/close state
+const Layout = () => {
+  const { theme } = useTheme();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen); // Toggle sidebar open state
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    // Apply the theme to the root div to control overall styling
     <div className={`min-h-screen flex flex-col ${theme === "dark" ? "dark" : ""}`}>
-      <div className="bg-white text-gray-900 dark:bg-gray-800 dark:text-white flex flex-col grow">
-        {/* Header component */}
-        <Header toggleSidebar={toggleSidebar} />
+      <Header toggleSidebar={toggleSidebar} />
 
-        <div className="flex flex-grow">
-          {/* Sidebar component */}
-          <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-
-          {/* Main content area */}
-          <main className="flex-1 p-4">
-            {/* Render nested route content here */}
-            <Outlet />  {/* This will render the child routes */}
-          </main>
-        </div>
-
-        {/* Footer component */}
-        <Footer />
+      <div className="flex ">
+        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        
+        <main
+          className={`flex-1 overflow-y-auto p-4 h-[calc(100vh-4rem)] ${
+            isSidebarOpen ? "lg:ml-64" : "lg:ml-0"
+          }`}
+        >
+          <Outlet />
+        </main>
       </div>
+
+      <Footer />
     </div>
   );
 };

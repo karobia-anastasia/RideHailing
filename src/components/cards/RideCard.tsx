@@ -1,28 +1,21 @@
-// components/cards/RideCard.tsx
-import React from 'react';
 
-interface RideCardProps {
-  ride: {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-  };
-  onBook: () => void;
-}
+import React from "react";
+import { useTheme } from "../../context/ThemeContext";
 
-const RideCard: React.FC<RideCardProps> = ({ ride, onBook }) => {
+
+const RideCard = ({ ride }: { ride: any }) => {
+  const { theme } = useTheme();
+
   return (
-    <div className="bg-white shadow-md rounded-md p-4 hover:shadow-lg transition duration-200">
-      <h3 className="font-bold text-xl mb-2">{ride.name}</h3>
-      <p className="text-gray-600 mb-2">{ride.description}</p>
+    <div
+      className={`${
+        theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-gray-800"
+      } shadow-md rounded-md p-4 hover:shadow-lg transition duration-200`}
+    >
+      <h3 className="font-bold text-xl mb-2">{ride.rideName}</h3>
+      <p className="text-gray-600 mb-2">Driver: {ride.driver}</p>
+      <p className="text-gray-600 mb-2">Available Seats: {ride.availableSeats}</p>
       <p className="text-gray-700 font-semibold">Price: ${ride.price}</p>
-      <button
-        onClick={onBook}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300"
-      >
-        Book Ride
-      </button>
     </div>
   );
 };

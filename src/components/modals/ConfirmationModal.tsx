@@ -1,18 +1,7 @@
-// components/modals/ConfirmationModal.tsx
 import React from 'react';
 
-interface ConfirmationModalProps {
-  ride: {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-  };
-  onConfirm: () => void;
-  onCancel: () => void;
-}
 
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ ride, onConfirm, onCancel }) => {
+const ConfirmationModal = ({ ride, onConfirm, onCancel }) => {
   return (
     <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-80">
