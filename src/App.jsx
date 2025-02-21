@@ -19,6 +19,7 @@ function App() {
 
             <Route element={<Layout />}>
               <Route path="/" element={<AvailableRides />} />
+              <Route path="/available-rides" element={<AvailableRides />} />
               <Route path="/history" element={<RideHistory />} />
             </Route>
           </Routes>
