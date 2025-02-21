@@ -1,0 +1,26 @@
+{
+    "rides": [
+      {
+        "id": 1,
+        "rideName": "City Tour",
+        "driver": "John Doe",
+        "availableSeats": 3,
+        "price": "$15.00"
+      },
+      {
+        "id": 2,
+        "rideName": "Mountain Adventure",
+        "driver": "Jane Smith",
+        "availableSeats": 2,
+        "price": "$25.00"
+      },
+      {
+        "id": 3,
+        "rideName": "Beach Escape",
+        "driver": "Alice Johnson",
+        "availableSeats": 4,
+        "price": "$18.00"
+      }
+    ]
+  }
+  
