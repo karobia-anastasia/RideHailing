@@ -56,7 +56,6 @@ const AvailableRides = () => {
   const cancelBooking = () => {
     setSelectedRide(null);
   };
-
   const handleSubmit = () => {
     if (pickupLocation && dropOffLocation) {
       setLocationConfirmed(true);
