@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTheme } from '../../context/ThemeContext'; 
 import ConfirmationModal from '../../components/modals/ConfirmationModal';
+import DriverProfileModal from '../../components/modals/DriverProfileModal'; 
 import { dummyRides } from '../../data/rideData';
 
 const mapImage = "./assets/maps.jpeg";
@@ -19,6 +20,8 @@ const AvailableRides = () => {
   const [pickupLocation, setPickupLocation] = useState<string>('');
   const [dropOffLocation, setDropOffLocation] = useState<string>('');
   const [locationConfirmed, setLocationConfirmed] = useState<boolean>(false);  
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);  
+  const [selectedDriver, setSelectedDriver] = useState<any>(null);
 
   useEffect(() => {
     const fetchRides = () => {
@@ -71,9 +74,11 @@ const AvailableRides = () => {
     }
   };
 
-  const handleViewDriverProfile = (driverId: string) => {
-    console.log(`Navigating to profile of driver: ${driverId}`);
+  const handleViewDriverProfile = (driver: any) => {
+    setSelectedDriver(driver); 
+    setIsProfileModalOpen(true);
   };
+  
 
   return (
     <div className={`flex flex-col md:flex-row ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}>
@@ -144,20 +149,17 @@ const AvailableRides = () => {
                     onClick={() => handleBookRide(ride)}
                     className="mt-4 px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition duration-300"
                   >
-                    Book Ride
+                    Request Ride
                   </button>
                 </div>
 
                 <div className="w-1/4 text-center flex flex-col items-center justify-start">
-                  <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center mb-4">
-                    <span className="text-white text-xl">👤</span>
-                  </div>
                   <div className="mb-4">
                     <p className="text-gray-600 mb-1"><strong>Amount:</strong> {ride.price}</p>
                     <p className="text-gray-600 mb-1">Driver: {ride.driver}</p>
                   </div>
                   <button
-                    onClick={() => handleViewDriverProfile(ride.driverId)}
+                    onClick={() => handleViewDriverProfile(ride.driver)}
                     className="px-2 py-2 border border-gray-300 text-gray-700 rounded-3xl text-sm hover:border-emerald-500 hover:text-emerald-500 transition duration-300"
                   >
                     View Driver
@@ -174,6 +176,13 @@ const AvailableRides = () => {
           ride={selectedRide}
           onConfirm={confirmBooking}
           onCancel={cancelBooking}
+        />
+      )}
+
+      {isProfileModalOpen && selectedDriver && (
+        <DriverProfileModal 
+          driver={selectedDriver}
+          onClose={() => setIsProfileModalOpen(false)} 
         />
       )}
     </div>
