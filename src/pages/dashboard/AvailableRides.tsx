@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTheme } from '../../context/ThemeContext'; 
 import ConfirmationModal from '../../components/modals/ConfirmationModal';
+import { dummyRides } from '../../data/rideData';
 
 const mapImage = "./assets/maps.jpeg";
 
@@ -20,24 +21,31 @@ const AvailableRides = () => {
   const [locationConfirmed, setLocationConfirmed] = useState<boolean>(false);  
 
   useEffect(() => {
-    if (locationConfirmed && pickupLocation && dropOffLocation) {
-      setIsLoading(true);
-      axios
-        .get('http://localhost:5000/rides', {
-          params: {
-            pickupLocation,
-            dropOffLocation,
-          },
-        })
-        .then((response) => {
-          setAvailableRides(response.data);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.error('Error fetching available rides:', error);
-          setIsLoading(false);
-        });
-    }
+    const fetchRides = () => {
+      if (locationConfirmed && pickupLocation && dropOffLocation) {
+        setIsLoading(true);
+        axios
+          .get('http://localhost:5000/rides', {
+            params: {
+              pickupLocation,
+              dropOffLocation,
+            },
+          })
+          .then((response) => {
+            setAvailableRides(response.data);
+            setIsLoading(false);
+          })
+          .catch((error) => {
+            console.error('Error fetching available rides:', error);
+            setAvailableRides(dummyRides);
+            setIsLoading(false);
+          });
+      } else {
+        setAvailableRides(dummyRides); 
+      }
+    };
+
+    fetchRides();
   }, [locationConfirmed, pickupLocation, dropOffLocation]);
 
   const handleBookRide = (ride: any) => {
@@ -56,6 +64,7 @@ const AvailableRides = () => {
   const cancelBooking = () => {
     setSelectedRide(null);
   };
+
   const handleSubmit = () => {
     if (pickupLocation && dropOffLocation) {
       setLocationConfirmed(true);
