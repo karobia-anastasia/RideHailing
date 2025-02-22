@@ -117,7 +117,7 @@ const Header = ({ toggleSidebar }) => {
                     
                     <li>
                       <Link
-                        to="/settings" 
+                        to="/" 
                         className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <div className="flex items-center">
@@ -128,7 +128,7 @@ const Header = ({ toggleSidebar }) => {
                     </li>
                     <li>
                       <Link
-                        to="/support" 
+                        to="/" 
                         className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <div className="flex items-center">
