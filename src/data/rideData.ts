@@ -1,7 +1,8 @@
 export const dummyRides = [
     {
       "id": 1,
-      "driver": "John Doe",
+      "driver": "Stanely Mwangi",
+      "phoneNumber": "0710708505",
       "availableSeats": 3,
       "price": "$22.00",
       "vehicle": {
@@ -14,7 +15,8 @@ export const dummyRides = [
     },
     {
       "id": 2,
-      "driver": "Jane Smith",
+      "driver": "Jane Karanja",
+      "phoneNumber": "0710708505",
       "availableSeats": 5,
       "price": "$25.00",
       "vehicle": {
@@ -27,7 +29,8 @@ export const dummyRides = [
     },
     {
       "id": 3,
-      "driver": "Alice Johnson",
+      "driver": "Charity Mugeni",
+      "phoneNumber": "0710708505",
       "availableSeats": 1,
       "price": "$18.00",
       "vehicle": {
@@ -40,7 +43,7 @@ export const dummyRides = [
     },
     {
       "id": 4,
-      "driver": "Anastasia Karobua",
+      "driver": "Anastasia Karobia",
       "availableSeats": 1,
       "price": "$20.00",
       "vehicle": {
