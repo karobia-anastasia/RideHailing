@@ -10,8 +10,9 @@ Download and install Node.js from [nodejs.org](https://nodejs.org). After instal
 - `npm -v`
 
 ### **Clone the Repository**
-[https://github.com/karobia-anastasia/RideHailing.git](https://github.com/karobia-anastasia/RideHailing.git)
+```bash
+git clone https://github.com/karobia-anastasia/RideHailing.git
 
-Navigate to the project folder:
+### **Navigate to the project folder**
 ```bash
 cd RideHailing
