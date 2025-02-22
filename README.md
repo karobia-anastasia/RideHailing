@@ -14,14 +14,14 @@ Download and install Node.js from [nodejs.org](https://nodejs.org). After instal
 git clone https://github.com/karobia-anastasia/RideHailing.git
 
 Navigate to the Project Folder
--`cd RideHailing`
+cd RideHailing
 
 Install Dependencies
 Inside the project folder, install the required dependencies:
--`npm install`
+npm install
 
 Run the Development Server
 Start the development server:
--`npm run dev`
+npm run dev
 
 Open the application by visiting http://localhost:5173 in your web browser.
