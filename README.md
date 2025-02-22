@@ -4,7 +4,6 @@ To interact with the application use:
 Deployed link :https://ridehailing.netlify.app/
 
 
-
 Project Setup Guide
 
 Install Node.js and NPM
