@@ -1,8 +1,10 @@
 import React from 'react';
 
-const DriverProfileModal = ({ driver, onClose }: { driver: any, onClose: () => void }) => {
+const DriverProfileModal = ({ driver, onClose }) => {
+  if (!driver) return null;  
+
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-md max-w-sm w-full">
         <h3 className="text-xl font-bold mb-4">Driver Profile</h3>
 
@@ -22,6 +24,7 @@ const DriverProfileModal = ({ driver, onClose }: { driver: any, onClose: () => v
           <p><strong>Rating:</strong> 4.5 / 5</p>  
         </div>
 
+        {/* Close Button */}
         <div className="mt-4 text-right">
           <button 
             onClick={onClose} 
@@ -34,5 +37,6 @@ const DriverProfileModal = ({ driver, onClose }: { driver: any, onClose: () => v
     </div>
   );
 };
+
 
 export default DriverProfileModal;

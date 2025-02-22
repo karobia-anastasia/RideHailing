@@ -74,15 +74,15 @@ const AvailableRides = () => {
     }
   };
 
-  const handleViewDriverProfile = (ride: any) => {
-    setSelectedDriver(ride); 
+  const handleViewDriverProfile = (driver: any) => {
+    setSelectedDriver(driver); 
     setIsProfileModalOpen(true); 
   };
 
   return (
     <div className={`flex flex-col md:flex-row ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}>
       <div className="w-full md:w-2/5 p-4">
-        <h2 className="text-xl font-bold mb-4">Input Location to Get a Rider</h2>
+        <h2 className="text-2xl font-bold mb-4">Select Locations</h2>
 
         <div className="mb-4">
           <label className="block mb-2">Pickup Location</label>
@@ -120,7 +120,7 @@ const AvailableRides = () => {
           <img
             src={mapImage}
             alt="Map"
-            className="w-5/6 h-auto"
+            className="w-3/4 h-auto"
           />
         </div>
 
@@ -129,7 +129,6 @@ const AvailableRides = () => {
           <div className="text-center">Loading available rides...</div>
         ) : availableRides.length === 0 ? (
           <p>No rides available at the moment.</p>
-          
         ) : (
           <div className="space-y-4">
             {availableRides.map((ride: any, index: number) => (
@@ -157,7 +156,7 @@ const AvailableRides = () => {
                     <p className="text-gray-600 mb-1">Driver: {ride.driver}</p>
                   </div>
                   <button
-                    onClick={() => handleViewDriverProfile(ride)}  
+                    onClick={() => handleViewDriverProfile(ride.driver)} 
                     className="px-2 py-2 border border-gray-300 text-gray-700 rounded-3xl text-sm hover:border-emerald-500 hover:text-emerald-500 transition duration-300"
                   >
                     View Driver
