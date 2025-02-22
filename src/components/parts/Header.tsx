@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import { FaUserCircle, FaSignOutAlt, FaMoon, FaSun } from "react-icons/fa"; 
-import UserProfileModal from "../modals/UserProfileModal"; // Adjust import to UserProfileModal
+import UserProfileModal from "../modals/UserProfileModal"; 
 
 const Header = ({ toggleSidebar }) => {
   const { theme, toggleTheme } = useTheme();

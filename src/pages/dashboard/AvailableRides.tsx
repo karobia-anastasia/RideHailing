@@ -108,7 +108,7 @@ const AvailableRides = () => {
 
         <button
           onClick={handleSubmit}
-          className="px-4 py-2 bg-emerald-500 text-white rounded-md w-full"
+          className="px-4 py-2 bg-emerald-500 text-white rounded-md w-full hover:bg-emerald-600 "
         >
           Confirm Location
         </button>
