@@ -5,7 +5,7 @@ import ConfirmationModal from '../../components/modals/ConfirmationModal';
 import DriverProfileModal from '../../components/modals/DriverProfileModal'; 
 import { dummyRides } from '../../data/rideData';
 
-const mapImage = "./assets/maps.jpeg";
+const mapImage = "./assets/maps.png";
 
 const AvailableRides = () => {
   const { theme } = useTheme(); 
@@ -120,7 +120,7 @@ const AvailableRides = () => {
           <img
             src={mapImage}
             alt="Map"
-            className="w-5/6 h-auto"
+            className="w-full h-auto"
           />
         </div>
 

@@ -12,10 +12,10 @@ const Header = ({ toggleSidebar }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const user = {
-    name: "John Doe",
-    email: "john.doe@example.com",
+    name: "Anastasia",
+    email: "anastasia.com",
     phone: "123-456-7890",
-    address: "123 Elm Street, Springfield"
+    address: "Nairobi, Kenya"
   };
 
   const toggleProfileMenu = () => setProfileMenuOpen(!isProfileMenuOpen);
@@ -44,6 +44,14 @@ const Header = ({ toggleSidebar }) => {
     <header className="bg-emerald-600 text-white shadow-md dark:bg-emerald-800 sticky top-0 z-30">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
+        <div className="w-11 h-11 mr-2 bg-gradient-to-r from-green-600 via-yellow-400 to-red-400 rounded-full flex items-center justify-center">
+  <img 
+    src="./assets/logo.png" 
+    alt="Car Logo" 
+    className="w-8 h-8" 
+  />
+</div>
+
           <button
             className="lg:hidden mr-2 text-white focus:outline-none"
             onClick={handleHamburgerClick}
@@ -73,7 +81,7 @@ const Header = ({ toggleSidebar }) => {
                 className="text-white focus:outline-none flex items-center"
                 aria-label="Profile menu"
               >
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-emerald-600 border-2 border-emerald-600 hover:bg-emerald-600 hover:text-white cursor-pointer transition-all duration-200 ease-in-out">
+                <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-emerald-600 border-2 border-emerald-600 hover:bg-emerald-600 hover:text-white cursor-pointer transition-all duration-200 ease-in-out">
                   <FaUserCircle size={32} />
                 </div>
                 <span className={`ml-2 text-white transition-transform ${isProfileMenuOpen ? "rotate-180" : "rotate-0"}`}>
@@ -106,7 +114,7 @@ const Header = ({ toggleSidebar }) => {
                         </div>
                       </button>
                     </li>
-                    {/* New dropdown items */}
+                    
                     <li>
                       <Link
                         to="/settings" 
