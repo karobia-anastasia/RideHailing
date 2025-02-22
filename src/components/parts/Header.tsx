@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
-import { FaUserCircle, FaSignOutAlt, FaMoon, FaSun } from "react-icons/fa"; 
+import { FaUserCircle, FaSignOutAlt, FaMoon, FaSun, FaChevronDown, FaChevronUp, FaBars, FaTimes } from "react-icons/fa"; 
 import UserProfileModal from "../modals/UserProfileModal"; 
 
 const Header = ({ toggleSidebar }) => {
@@ -9,6 +9,7 @@ const Header = ({ toggleSidebar }) => {
   const location = useLocation();
   const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);  
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const user = {
     name: "John Doe",
@@ -30,25 +31,32 @@ const Header = ({ toggleSidebar }) => {
     { path: "/history", label: "Ride History" },
   ];
 
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [location]);
+
+  const handleHamburgerClick = () => {
+    setSidebarOpen(!isSidebarOpen);
+    toggleSidebar();
+  };
+
   return (
     <header className="bg-emerald-600 text-white shadow-md dark:bg-emerald-800 sticky top-0 z-30">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <button
             className="lg:hidden mr-2 text-white focus:outline-none"
-            onClick={toggleSidebar}
+            onClick={handleHamburgerClick}
             aria-label="Toggle Sidebar"
           >
-            ☰
+            {isSidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
-
         </div>
         <nav className="hidden lg:flex items-center space-x-4">
-  <div className="text-white font-semibold text-xl">
-    Welcome to <span className="text-2xl font-bold mr-4">Ride-Hailing Dashboard</span>  <span className="text-emerald-500 ml-4"> & Get a Rider</span>
-  </div>
-</nav>
-
+          <div className="text-white font-semibold text-xl">
+            Welcome to <span className="text-2xl font-bold mr-4">Ride-Hailing Dashboard</span> <span className="text-emerald-500 ml-4"> & Get a Rider</span>
+          </div>
+        </nav>
 
         <div className="flex items-center space-x-4">
           <button
@@ -68,19 +76,18 @@ const Header = ({ toggleSidebar }) => {
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-emerald-600 border-2 border-emerald-600 hover:bg-emerald-600 hover:text-white cursor-pointer transition-all duration-200 ease-in-out">
                   <FaUserCircle size={32} />
                 </div>
-                
-                <span className={`ml-0 text-white transition-transform ${isProfileMenuOpen ? "rotate-180" : "rotate-0"}`}>
-                  {isProfileMenuOpen ? "▲" : "▼"}
+                <span className={`ml-2 text-white transition-transform ${isProfileMenuOpen ? "rotate-180" : "rotate-0"}`}>
+                  {isProfileMenuOpen ? <FaChevronUp size={16} /> : <FaChevronDown size={16} />}
                 </span>
               </button>
 
               {isProfileMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg">
+                <div className={`absolute right-0 mt-2 w-48 rounded-lg shadow-lg ${theme === "light" ? "bg-white text-black" : "bg-gray-800 text-white"}`}>
                   <ul className="py-2">
                     <li>
                       <button
                         onClick={openProfileModal}  
-                        className="block px-4 py-2 hover:bg-gray-100 w-full text-left"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left"
                       >
                         <div className="flex items-center">
                           <FaUserCircle className="mr-2" />
@@ -88,17 +95,39 @@ const Header = ({ toggleSidebar }) => {
                         </div>
                       </button>
                     </li>
-
                     <li>
                       <button
                         onClick={handleLogout}
-                        className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                        className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <div className="flex items-center">
                           <FaSignOutAlt className="mr-2" />
                           Logout
                         </div>
                       </button>
+                    </li>
+                    {/* New dropdown items */}
+                    <li>
+                      <Link
+                        to="/settings" 
+                        className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                      >
+                        <div className="flex items-center">
+                          <FaUserCircle className="mr-2" />
+                          Settings
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/support" 
+                        className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
+                      >
+                        <div className="flex items-center">
+                          <FaUserCircle className="mr-2" />
+                          Support
+                        </div>
+                      </Link>
                     </li>
                   </ul>
                 </div>

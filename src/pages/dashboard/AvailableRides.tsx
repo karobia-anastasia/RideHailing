@@ -80,12 +80,12 @@ const AvailableRides = () => {
   };
 
   return (
-    <div className={`flex flex-col md:flex-row ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}>
-      <div className="w-full md:w-2/5 p-4">
-        <h2 className="text-xl font-bold mb-4">Input Location to Get a Rider</h2>
+    <div className={`flex flex-col md:flex-row  ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>
+      <div className={`w-full md:w-2/5 p-4  ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>
+        <h2 className={`text-xl font-bold mb-4  ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>Input Location to Get a Rider</h2>
 
         <div className="mb-4">
-          <label className="block mb-2">Pickup Location</label>
+          <label className={`block mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>Pickup Location</label>
           <input
             type="text"
             value={pickupLocation}
@@ -96,7 +96,7 @@ const AvailableRides = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2">Drop-off Location</label>
+          <label className={`block mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>Drop-off Location</label>
           <input
             type="text"
             value={dropOffLocation}
@@ -114,8 +114,8 @@ const AvailableRides = () => {
         </button>
       </div>
 
-      <div className="w-full md:w-3/5 p-4">
-        <h2 className="text-2xl font-bold mb-4">Map of the Area</h2>
+      <div className={`w-full md:w-3/5 p-4 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}>
+        <h2 className={`text-2xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>Map of the Area</h2>
         <div className="mb-6">
           <img
             src={mapImage}
@@ -124,46 +124,46 @@ const AvailableRides = () => {
           />
         </div>
 
-        <h2 className="text-2xl font-bold mt-8 mb-4">Available Rides</h2>
+        <h2 className={`text-2xl font-bold mt-8 mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>Available Rides</h2>
         {isLoading ? (
           <div className="text-center">Loading available rides...</div>
         ) : availableRides.length === 0 ? (
           <p>No rides available at the moment.</p>
-          
         ) : (
-          <div className="space-y-4">
+          <div className= {` space-y-4 ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>
             {availableRides.map((ride: any, index: number) => (
-              <div key={index} className={`bg-white shadow-md rounded-md p-4 flex items-center justify-between ${theme === 'dark' ? 'bg-gray-700' : 'bg-white'}`}>
-                <div className="w-3/4">
-                  <div className="mt-4">
-                    <p className="text-gray-600 mb-1"><strong>Model:</strong> {ride.vehicle.model}</p>
-                    <p className="text-gray-600 mb-1"><strong>Seats:</strong> {ride.vehicle.seats}</p>
-                    <p className="text-gray-600 mb-1"><strong>Type:</strong> {ride.vehicle.type}</p>
-                    <p className="text-gray-600 mb-1"><strong>Color:</strong> {ride.vehicle.color}</p>
-                    <p className="text-gray-700 font-bold">Plate: {ride.vehicle.numberPlate}</p>
-                  </div>
-
-                  <button
-                    onClick={() => handleBookRide(ride)}
-                    className="mt-4 px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition duration-300"
-                  >
-                    Request Ride
-                  </button>
-                </div>
-
-                <div className="w-1/4 text-center flex flex-col items-center justify-start">
-                  <div className="mb-4">
-                    <p className="text-gray-600 mb-1"><strong>Amount:</strong> {ride.price}</p>
-                    <p className="text-gray-600 mb-1">Driver: {ride.driver}</p>
-                  </div>
-                  <button
-                    onClick={() => handleViewDriverProfile(ride)}  
-                    className="px-2 py-2 border border-gray-300 text-gray-700 rounded-3xl text-sm hover:border-emerald-500 hover:text-emerald-500 transition duration-300"
-                  >
-                    View Driver
-                  </button>
-                </div>
-              </div>
+       <div key={index} className={`shadow-md rounded-md p-4 flex items-center justify-between ${theme === 'dark' ? 'bg-gray-700' : 'bg-white'}`}>
+       <div className="w-3/4">
+         <div className="mt-4">
+           <p className={`mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-600'}`}><strong>Model:</strong> {ride.vehicle.model}</p>
+           <p className={`mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-600'}`}><strong>Seats:</strong> {ride.vehicle.seats}</p>
+           <p className={`mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-600'}`}><strong>Type:</strong> {ride.vehicle.type}</p>
+           <p className={`mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-600'}`}><strong>Color:</strong> {ride.vehicle.color}</p>
+           <p className={`text-gray-700 font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>Plate: {ride.vehicle.numberPlate}</p>
+         </div>
+     
+         <button
+           onClick={() => handleBookRide(ride)}
+           className="mt-4 px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition duration-300"
+         >
+           Request Ride
+         </button>
+       </div>
+     
+       <div className="w-1/4 text-center flex flex-col items-center justify-start">
+         <div className="mb-4">
+           <p className={`mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-600'}`}><strong>Amount:</strong> {ride.price}</p>
+           <p className={`mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-600'}`}>Driver: {ride.driver}</p>
+         </div>
+         <button
+           onClick={() => handleViewDriverProfile(ride)}  
+           className={`px-2 py-2 border border-gray-300 text-gray-700 rounded-3xl text-sm hover:border-emerald-500 hover:text-emerald-500 transition duration-300 ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}
+         >
+           View Driver
+         </button>
+       </div>
+     </div>
+     
             ))}
           </div>
         )}
