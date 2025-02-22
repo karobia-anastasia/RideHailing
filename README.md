@@ -1,6 +1,6 @@
 # **RideHailing**
 
-To interact with the application use: [Deployed link](https://ridehailing.netlify.app/)
+To interact with the application, use: [Deployed link](https://ridehailing.netlify.app/)
 
 ## **Project Setup Guide**
 
@@ -12,17 +12,11 @@ Download and install Node.js from [nodejs.org](https://nodejs.org). After instal
 ### **Clone the Repository**
 ```bash
 git clone https://github.com/karobia-anastasia/RideHailing.git
-
 Navigate to the Project Folder
-```bash
 cd RideHailing
-
-Inside the project folder, install the required dependencies:
-```bash
+Install the Required Dependencies
 npm install
-
 Run the Development Server
-```bash
 npm run dev
-
-Open the application by visiting http://localhost:5173 in your web browser.
+Open the Application
+Once the server is running, open the application by visiting http://localhost:5173 in your web browser.
